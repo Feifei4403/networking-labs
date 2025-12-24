@@ -4,6 +4,11 @@ This lab simulates accessing a network switch through the **console port** using
 Using a terminal emulator (e.g. Tera Term), we establish a local connection to the device, display basic system information, and configure the system clock. 
 This foundational lab is part of our Networking Labs Series and emphasizes physical device access before remote management.
 
+## 🔒 Security Note
+
+All real device model names, ports, and IP data have been generalized to protect institutional configurations and hardware details. 
+This lab is a simulation for educational use only.
+
 
 ## 🎯 Objectives
 
@@ -50,3 +55,9 @@ Switch# show version
 Switch# show clock
 Switch# clock set 15:08:00 Oct 26 2023
 Switch# show clock
+
+  -show version: Displays IOS version and device info.
+  -clock set: Updates system clock manually.
+  -show clock: Verifies the new time.
+
+
