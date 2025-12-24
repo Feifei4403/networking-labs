@@ -1,0 +1,52 @@
+# Lab 2 – Console Access and Basic IOS Navigation Using Terminal Emulator
+
+This lab simulates accessing a network switch through the **console port** using a serial or USB connection. 
+Using a terminal emulator (e.g. Tera Term), we establish a local connection to the device, display basic system information, and configure the system clock. 
+This foundational lab is part of our Networking Labs Series and emphasizes physical device access before remote management.
+
+
+## 🎯 Objectives
+
+- Establish a serial console connection using a terminal emulator.
+- Access the switch CLI through local console port.
+- Identify the device IOS version and basic system info.
+- Configure and verify the system clock using privileged EXEC mode.
+
+
+## 🧱 Lab Setup
+
+### Hardware Used
+
+| Device        | Description                      |
+|---------------|----------------------------------|
+| 1 x Switch    | Any Cisco-like Layer 2 switch    |
+| 1 x PC/Laptop | With Tera Term or similar tool   |
+| 1 x Console Cable | Rollover (RJ-45 to DB-9) or Mini-USB |
+
+
+## 🛠️ Steps Summary
+
+### 🔌 Part 1: Physical Connection
+
+1. Connect the console cable to the switch's **console port**.
+2. Connect the other end to your PC (USB or serial COM).
+3. Power on both devices.
+
+
+### 🧭 Part 2: Establish Console Session
+
+1. Open **Tera Term** (or similar emulator).
+2. Select the correct **Serial COM port**.
+3. Confirm console settings: `9600 baud, 8N1, no flow control`.
+
+
+### 🖥️ Part 3: Navigate and Configure
+
+#### Example CLI Commands Used:
+
+```bash
+Switch> enable
+Switch# show version
+Switch# show clock
+Switch# clock set 15:08:00 Oct 26 2023
+Switch# show clock
