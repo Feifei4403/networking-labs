@@ -1,5 +1,9 @@
 # Lab 1 – Basic Router and Switch Configuration
 
+## 📝 Notes
+
+This lab simulates a typical configuration recovery task where the running configuration was lost due to a power failure. 
+Reconfiguration was done manually using Cisco IOS commands, and full network functionality was restored.
 This lab demonstrates a basic Cisco network setup using Packet Tracer. It includes one router, two switches, and four PCs spread across two subnets. 
 The lab simulates reconfiguration of a network after a configuration loss, with full restoration of IP addressing, interface connectivity, password protection, and device access control.
 
@@ -63,7 +67,18 @@ line vty 0 4
 exit
 
 service password-encryption
-banner motd # Authorized access only - Employee Only #
+banner motd #Authorized access only - Employee Only#
 end
 
 copy running-config startup-config
+
+
+## ✅ Results
+
+All PCs were successfully assigned static IPs
+Ping tests between devices across subnets were successful
+Configuration secured with encrypted access
+Configuration saved and backed up
+
+
+## Screenshots may be added later to show topology before and after configuration.
