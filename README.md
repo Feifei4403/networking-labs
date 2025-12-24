@@ -1,2 +1,2 @@
 # networking-labs
-Basic to intermediate Cisco Packet Tracer labs covering routing, switching, IP addressing, VLANs, DHCP, and NAT.
+A collection of beginner to intermediate-level networking labs created using Cisco Packet Tracer. These labs cover core networking topics such as IP addressing, router and switch configuration, static routing, VLANs, DHCP, and NAT.
