@@ -1,0 +1,69 @@
+# Lab 1 – Basic Router and Switch Configuration
+
+This lab demonstrates a basic Cisco network setup using Packet Tracer. It includes one router, two switches, and four PCs spread across two subnets. 
+The lab simulates reconfiguration of a network after a configuration loss, with full restoration of IP addressing, interface connectivity, password protection, and device access control.
+
+
+## 🎯 Objectives
+
+- Configure router interfaces with IP addresses
+- Set up secure access:
+  - Console and VTY passwords
+  - Encrypted `enable secret`
+  - MOTD login banner
+- Configure static IP addresses on PCs
+- Set correct default gateways
+- Verify connectivity with `ping`
+- Save configuration to NVRAM
+
+
+## 🧱 Network Topology
+
+| Device      | Role      | IP Address       | Interface            |
+|-------------|-----------|------------------|-----------------------|
+| CoreRouter  | Router    | 192.168.4.1      | G0/0/0                |
+|             |           | 192.168.104.1    | G0/0/1                |
+| Switch1     | Switch    | N/A              | Connected to PC1/PC2 |
+| Switch2     | Switch    | N/A              | Connected to PC3/PC4 |
+| PC1         | End Host  | 192.168.4.10     | Default GW: 192.168.4.1 |
+| PC2         | End Host  | 192.168.4.11     | Default GW: 192.168.4.1 |
+| PC3         | End Host  | 192.168.104.10   | Default GW: 192.168.104.1 |
+| PC4         | End Host  | 192.168.104.11   | Default GW: 192.168.104.1 |
+
+
+## 🔧 Router Configuration Summary
+
+```bash
+enable
+configure terminal
+hostname CoreRouter
+
+interface GigabitEthernet0/0/0
+ description Link to Switch1
+ ip address 192.168.4.1 255.255.255.0
+ no shutdown
+exit
+
+interface GigabitEthernet0/0/1
+ description Link to Switch2
+ ip address 192.168.104.1 255.255.255.0
+ no shutdown
+exit
+
+enable secret NetCore2023!
+
+line console 0
+ password AccessLab#1
+ login
+exit
+
+line vty 0 4
+ password AccessLab#1
+ login
+exit
+
+service password-encryption
+banner motd # Authorized access only - Employee Only #
+end
+
+copy running-config startup-config
