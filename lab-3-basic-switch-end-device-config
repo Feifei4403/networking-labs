@@ -1,0 +1,103 @@
+# Lab 3 – Basic Switch and End Device Configuration
+
+This lab simulates a small local area network (LAN) using two managed switches and two PCs. 
+I'll configure basic switch settings including hostname, secure access, interface status, and system identification. 
+The lab also includes basic IP addressing and connectivity testing using `ping`.
+
+
+## 🎯 Objectives
+
+- Build a simple LAN with two switches and two PCs  
+- Assign static IP addresses to switches and PCs  
+- Configure basic switch settings: hostname, passwords, banner  
+- Verify connectivity and interface status using show commands
+
+
+## 🧱 Network Topology (Simplified)
+
+
+| Device     | Interface | IP Address     | Subnet Mask     |
+|------------|-----------|----------------|-----------------|
+| Switch-1   | VLAN 1    | 192.168.1.1    | 255.255.255.0   |
+| Switch-2   | VLAN 1    | 192.168.1.2    | 255.255.255.0   |
+| PC-A       | NIC       | 192.168.1.10   | 255.255.255.0   |
+| PC-B       | NIC       | 192.168.1.11   | 255.255.255.0   |
+
+
+## 🛠️ Commands Used
+### 🔹 On Switch-1
+```bash
+
+enable
+configure terminal
+hostname Switch-1
+no ip domain-lookup
+enable secret NetCore2023!
+line console 0
+ password AccessLab#1
+ login
+exit
+line vty 0 4
+ password AccessLab#1
+ login
+exit
+interface vlan 1
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+exit
+banner motd # Unauthorized Access is Prohibited #
+copy running-config startup-config
+
+
+### 🔹 On Switch-2
+
+enable
+configure terminal
+hostname Switch-2
+no ip domain-lookup
+enable secret NetCore2023!
+line console 0
+ password AccessLab#1
+ login
+exit
+line vty 0 4
+ password AccessLab#1
+ login
+exit
+interface vlan 1
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+exit
+banner motd #Unauthorized Access is Prohibited#
+copy running-config startup-config
+
+
+### 🖥️ PC Configuration
+
+| PC   | IP Address   | Subnet Mask   | Default Gateway |
+| ---- | ------------ | ------------- | --------------- |
+| PC-A | 192.168.1.10 | 255.255.255.0 | 192.168.1.1     |
+| PC-B | 192.168.1.11 | 255.255.255.0 | 192.168.1.2     |
+
+
+### ✅ Verification Steps
+
+show running-config
+show version
+show ip interface brief
+
+ping between:
+PC-A ↔ Switch-1
+PC-B ↔ Switch-2
+PC-A ↔ PC-B
+
+### 🔒 Security Note
+
+Device models and passwords have been replaced with generic identifiers to preserve academic and operational security. 
+This lab is for simulation and learning purposes only.
+
+
+### 🧠 Reflection
+
+Why are some FastEthernet ports on the switches up while others are down?
+What might prevent successful pings between PCs?
